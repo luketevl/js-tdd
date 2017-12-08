@@ -19,3 +19,5 @@
 
 # Observations
 - **Style Guide** is **very** important
+-  **Husky**
+  - _Only run_ in **changed** files
