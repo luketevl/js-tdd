@@ -16,105 +16,85 @@
 - https://github.com/typicode/husky
 > Easy create githooks
 
-# Promise
-- Resolve all promises
-```javascript
-Promise.all([]);
-```
-- Return the first promisse in any romises
-```javascript
-Promise.race([]);
-```
 
-# Symbol
-> This is new type, are **immutable** and **unique**
+## Code quality
+- MacCall
 
-- **Creating** symbol
+## Why Test ?
+- Help with
+  - Refactor
+  - Documentation
+  - Best designer code, dummy
+  - Quality
 
+### TDD
+> It is a simple and small automated test that check the behavior that a unique method
+- Isolation between tests
+  - Use before and after eachs
+- Choose the best assert for that moment
+- Use **mocks** for external calls
+
+
+#### Flux
+- Steps
+  1 - Write a test that fails
+  2 - Make the code work
+  3 - Eliminate redundancy
+
+![TDD FLUX](https://www.allaboutcircuits.com/uploads/articles/red-green-refactor.png)
+- **Any** test to **ONE** method
+
+#### THINKING TEST
+- What the code will do ?
+- What data it will receive?
+- What the code will return ?
+- What the do actions code will run ?
+
+#### Pattern
+> "It **should** do that **when this**"
 ```javascript
-const foo = Symbol('name');
-const bar = Symbol('name');
-foo == bar // return FALSE
-```
-
-- **Get** propertySymbols
-```javascript
-Object.getOwnPropertySymbol(obj);
-```
-
-# Iterators and Iterable
-> Return `{value: any, done: boolean}`
-> Element can be iterator
-```javascript
-const example = "example";
-const it = example[Sysmbol.iterator]();
-it.next();
-```
-
-# Generators
-> Run function in steps
-- **Creating** add * in function name 
-  - **Yield** is **equal return** but is possible continue the function after the **yield** 
-  - **Call** the interator use **.next()**
-```javascript
-function* getNames(){
-  yield 'Lukete';
-  yield 'Henrique';
-}
-const names = getNames();
-names.next();
-```
-
-# Proxy
-- **Creating** proxy
-  - params: obj, handler
-```javascript
-const obj = {
-  name: 'Lukete',
-  age: 25
-}
-const proxy = new Proxy(obj, {
-  get(target, name){
-    console.log('Request name');
-  },
-  set(target, name, value){
-    console.log('Request name');
-  }
+it('should return 4 when receive 2,2'{
+  expect(sum(2,2)).to.equals(4);
 })
 ```
 
-# SET
-> Is iterables
-
-- Use **size**
+#### SPIES
+> Say whether the method was called, how many times, what arguments were passed, etc. Allows you to check if a method has been called within another method
+- When use?
+  - In test callbacks
 ```javascript
-let mySet = new Set(['lukete', 'henrique']);
-mySet.size;
+if('should inspect Jquery.getJSON usage of Jquery.ajax', function(){
+  sinon.spy(jQuery, "ajax");
+  jQuery.getJSON('/some/resource');
+  assert(jQuery.ajax.calledOnce);
+})
+```
+#### STUBS
+> Equals **SPIES** **BUT** Except that they **override the target function**. It can even **change the behavior**, as well as the **values and exceptions** raised. 
+- When use?
+  - Jump part not necessary in code
+  - Force exception
+  - Simplify assync tests
+
+
+#### MOCKS
+>  Fakes methods(simitar to **spies** and **stubs**)
+- When use?
+  - Verify multiply behavior in specificy point
+```javascript
+if('should pass object with correct values to save only once', function(){
+  const info = { name: 'test' };
+  const expectedUser = { nameLowerCase: info.name.toLowerCase()};
+
+  const database = sinon.mock(Database);
+  database.expects('save').onde().withArgs(expectedUser);
+
+  setupNewUser(info, function(){});
+  database.verify();
+  database.restore();
+});
 ```
 
-- **Add** element _ignore equals values_
-```javascript
-let mySet = new Set(['lukete', 'henrique']);
-mySet.add('souza');
-```
-
-- **Delete** element
-```javascript
-let mySet = new Set(['lukete', 'henrique']);
-mySet.delete('henrique');
-```
-
-- **Verify if exists** element
-```javascript
-let mySet = new Set(['lukete', 'henrique']);
-mySet.has('henrique');
-```
-
-- **Get itarables** element
-```javascript
-let mySet = new Set(['lukete', 'henrique']);
-mySet.values();
-```
 
 # Observations
 - **Style Guide** is **very** important
