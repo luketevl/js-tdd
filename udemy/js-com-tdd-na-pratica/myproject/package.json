@@ -2,11 +2,12 @@
   "name": "tdd-course",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint src/*.js",
-    // "prepush": "npm run lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "./node_modules/.bin/webpack --colors --progress",
+    "watch": "npm run build -- --watch",
+    "server": "./node_modules/.bin/webpack-dev-server --inline --open"
   },
   "author": "luketevl",
   "license": "MIT",
@@ -14,6 +15,16 @@
     "eslint": "^4.12.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "husky": "^0.14.3"
+    "husky": "^0.14.3",
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015-native-modules": "^6.9.4",
+    "webpack": "^2.2.0-rc.2",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "dependencies": {
+    "ramda": "^0.22.1",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1"
   }
 }
