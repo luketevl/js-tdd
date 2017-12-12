@@ -86,7 +86,7 @@ if('should pass object with correct values to save only once', function(){
   const info = { name: 'test' };
   const expectedUser = { nameLowerCase: info.name.toLowerCase()};
 
-  const database = sinon.mock(Database);
+  ct database = sinon.mock(Database);
   database.expects('save').onde().withArgs(expectedUser);
 
   setupNewUser(info, function(){});
@@ -95,8 +95,134 @@ if('should pass object with correct values to save only once', function(){
 });
 ```
 
+## TOOLS
+- https://mochajs.org/
+  - **Simple** and **faster**
+- http://chaijs.com/
+  - Chai is a BDD / TDD **assertion** library
+- https://istanbul.js.org/
+  - Covarage
+- http://sinonjs.org/
+  - Using to create **spies**, **stubs** and **mocks**
+
+
+# MOCHA
+## WRITE TEST
+- **Describe**, block of test.Summary about the test file
+  - One  or n describes
+```javascript
+describe('nameClass', function(){});
+describe('nameClass', function(){
+  describe('Method1', function(){});
+  describe('Method2', function(){});
+});
+```
+- **Context**, define the _Case of test_
+```javascript
+describe('nameClass', function(){
+  context('Case 1', function(){});
+  context('Case 2', function(){});
+});
+```
+- **IT**, run the test
+```javascript
+describe('nameClass', function(){
+  context('Case 1', function(){
+    it('should happen ...', function(){
+      // What data it will receive?
+      // What the code will return ?
+    });
+  });
+});
+```
+## FUNCTIONS 
+- **only**, run only that
+```javascript
+describe('nameClass', function(){
+  context('Case 1', function(){});
+  context('Case 2', function(){});
+  context.only('Case 2', function(){});
+});
+```
+- **skip**, skip that
+```javascript
+describe('nameClass', function(){
+  context('Case 1', function(){});
+  context('Case 2', function(){
+    it.skip('should happen ...', function(){});
+  });
+  context.skip('Case 2', function(){});
+});
+```
+
+## HOOKS
+> Help duplicate code
+- **Before**, run ONE X before the block
+```javascript
+describe('nameClass', function(){
+  before(function(){
+
+  });
+});
+```
+- **After**, run ONE X after the block
+```javascript
+describe('nameClass', function(){
+  after(function(){
+
+  });
+});
+```
+
+- **Before**, run ALL X before the block
+```javascript
+describe('nameClass', function(){
+  beforeEach(function(){
+
+  });
+});
+```
+- **After**, run ALL X after the block
+```javascript
+describe('nameClass', function(){
+  afterEach(function(){
+
+  });
+});
+```
+
+
+## REPORTER
+- **RED** _broken_ test
+- **GREEN**  _success_ test
+- **BLUE**  _skiped_ test
+- Run differente resport
+```shell
+mocha --reporter=nyan|dot|doc|html
+```
+
+## COMMAND LINE
+- **BAIL**, **stop** in FIRST erro and die
+```shell
+mocha --bail
+```
+
+# CHAI
+> Lib to asserts
+- Interfaces
+  - **Should**
+  - **Assert**
+  - **Expect**
+
+- Import
+```javascript
+const expect = require('chai').expect;
+```
+
+
 
 # Observations
 - **Style Guide** is **very** important
 -  **Husky**
   - _Only run_ in **changed** files
+- **Smoke test** be a more simple test( function exists, type of variables)
