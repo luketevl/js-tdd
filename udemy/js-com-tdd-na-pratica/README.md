@@ -206,6 +206,10 @@ mocha --reporter=nyan|dot|doc|html
 ```shell
 mocha --bail
 ```
+- **Using ES6**
+```shell
+mocha --require babel-register
+```
 
 # CHAI
 > Lib to asserts
@@ -218,6 +222,15 @@ mocha --bail
 ```javascript
 const expect = require('chai').expect;
 ```
+
+# NYC
+> Codecoverage
+- Results
+  - **Stmts**, line run and testing
+  - **Branch**, check test IF and ELSE
+  - **Funcs**, check return of functions
+  - **Lines**, qty of lines coverage
+  - **Uncovered Lines**
 
 
 
