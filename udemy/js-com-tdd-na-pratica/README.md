@@ -232,7 +232,44 @@ const expect = require('chai').expect;
   - **Lines**, qty of lines coverage
   - **Uncovered Lines**
 
+# SINON
+- *Install**
+```shell
+ npm i sinon sinon-chai sinon-stub-promise node-fetch --save-dev
+```
+- **Config**
+```javascript
+import chai, { expect } from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+import sinonStubPromise  from 'sinon-stub-promise';
 
+import { search, searchAlbums, searchArtists, searchTracking, searchPlayLists } from './main';
+
+chai.use(sinonChai);
+sinonStubPromise(sinon);
+```
+- **Creating GLOBAL** 
+```javascript
+global.fetch = require('node-fetch');
+```
+- **Creating STUB**
+  - using global
+```javascript
+const fetchedStub = sinon.stub(global, 'fetch');
+```
+- **RESTORE** stub
+```javascript
+fetchedStub.restore();
+```
+- **RETURNS** with use promise use:
+```javascript
+fetchedStub.returnsPromise();
+```
+- **Resolve** promise
+```javascript
+promise.resolves({});
+```
 
 # Observations
 - **Style Guide** is **very** important
